@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-Do App</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <h2>My To-Do List</h2>
+
+      <div class="input-container">
+        <input
+          type="text"
+          placeholder="What needs to be done?"
+          v-model="newTask"
+          @keyup.enter="addTask"
+        />
+        <button class="add-btn" @click.prevent="addTask">Add Task</button>
+      </div>
+
+      <div class="task-list-container">
+        <h2 class="task-list-title">Tasks ({{ Tasks.length }})</h2>
+        <div class="tasks-container">
+          <div v-if="Tasks.length > 0">
+            <ul>
+              <li v-for="(Task, index) in Tasks" :key="index">
+                <span class="task-text">{{ Task }}</span>
+                <button class="delete-btn" @click.prevent="deleteTask(index)">
+                  Delete
+                </button>
+              </li>
+            </ul>
+          </div>
+          <div v-else class="empty-state">No tasks yet. Add one above!</div>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>
